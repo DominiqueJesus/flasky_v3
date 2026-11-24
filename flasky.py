@@ -5,7 +5,7 @@ load_dotenv()
 import os
 import click
 from app import create_app, db
-from app.models import User, Role, Email
+from app.models import Professor
 from flask_migrate import Migrate
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
@@ -13,7 +13,7 @@ migrate = Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
-  return dict(db=db, User=User, Role=Role, Email=Email)
+  return dict(db=db, Professor=Professor)
 
 @app.cli.command()
 @click.argument('test_names', nargs=-1)
